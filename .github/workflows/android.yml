@@ -1,5 +1,6 @@
 name: Build Tauri v2 Android APK
-on: [push, workflow_dispatch]
+on: 
+    workflow_dispatch:
 
 jobs:
   build-apk:
