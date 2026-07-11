@@ -19,12 +19,6 @@
 				"allow": [{ "path": "**" }]
 			}
 		},
-		{
-			"identifier": "fs:allow-directory-picker",
-			"rule": {
-				"allow": [{ "path": "**" }]
-			}
-		},
 		"core:window:allow-create",
 		"core:window:allow-center",
 		"core:window:allow-request-user-attention",
