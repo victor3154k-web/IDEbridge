@@ -35,7 +35,13 @@
 				"depends": []
 			}
 		},
-		"createUpdaterArtifacts": "v1Compatible"
+		"createUpdaterArtifacts": "v1Compatible",
+		"android": {
+			"permissions": [
+				"android.permission.READ_EXTERNAL_STORAGE",
+				"android.permission.WRITE_EXTERNAL_STORAGE"
+			]
+		}
 	},
 	"productName": "bridge",
 	"mainBinaryName": "bridge",
@@ -43,12 +49,12 @@
 	"identifier": "com.bridge.dev",
 	"plugins": {
 		"updater": {
-			"endpoints": ["https://github.com/bridge-core/editor/releases/latest/download/latest.json"],
+			"endpoints": ["https://github.com"],
 			"pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDJFQkNGOUQ2REIzMUU5MDQKUldRRTZUSGIxdm04TGtiQzFEaE1GdVBPbUJYUjJDc25rQjg3RjlyKzdya2RUZVN1RkZ1azVBVmcK"
 		},
-        "fs": {
-            "requireLiteralLeadingDot": false
-        }
+		"fs": {
+			"requireLiteralLeadingDot": false
+		}
 	},
 	"app": {
 		"withGlobalTauri": true,
@@ -56,7 +62,8 @@
 			{
 				"label": "main",
 				"maximized": true,
-				"fullscreen": false,
+				"fullscreen": true,
+				"zoom": 1.35,
 				"resizable": true,
 				"decorations": false,
 				"height": 900,
