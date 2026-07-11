@@ -35,13 +35,7 @@
 				"depends": []
 			}
 		},
-		"createUpdaterArtifacts": "v1Compatible",
-		"android": {
-			"permissions": [
-				"android.permission.READ_EXTERNAL_STORAGE",
-				"android.permission.WRITE_EXTERNAL_STORAGE"
-			]
-		}
+		"createUpdaterArtifacts": "v1Compatible"
 	},
 	"productName": "bridge",
 	"mainBinaryName": "bridge",
@@ -63,7 +57,6 @@
 				"label": "main",
 				"maximized": true,
 				"fullscreen": true,
-				"zoom": 1.35,
 				"resizable": true,
 				"decorations": false,
 				"height": 900,
