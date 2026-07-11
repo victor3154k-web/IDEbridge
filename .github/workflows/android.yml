@@ -1,6 +1,8 @@
 name: Build Tauri v2 Android APK
 on: 
-    workflow_dispatch:
+  workflow_dispatch:
+  push:
+    branches: [ "main", "master" ] # Dispara a build automaticamente quando der push
 
 jobs:
   build-apk:
@@ -37,6 +39,16 @@ jobs:
 
       - name: Inicializar Configurações do Android (Modo CI)
         run: cargo tauri android init --ci
+
+      - name: Injetar Permissões de Armazenamento no Manifesto do Android
+        run: |
+          MANIFEST_PATH=$(find src-tauri -name AndroidManifest.xml)
+          if [ -n "$MANIFEST_PATH" ]; then
+            echo "Manifesto encontrado em: $MANIFEST_PATH"
+            sed -i '/<\/manifest>/i \    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>\n    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>' "$MANIFEST_PATH"
+          else
+            echo "Aviso: AndroidManifest.xml nao encontrado para injetar permissoes."
+          fi
 
       - name: Compilar APK (Modo Debug)
         run: cargo tauri android build --debug
