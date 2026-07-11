@@ -8,7 +8,7 @@ jobs:
       - name: Checkout Código-Fonte
         uses: actions/checkout@v4
 
-      - name: Configurar Node.js (Atualizado para Node 22)
+      - name: Configurar Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -31,14 +31,14 @@ jobs:
       - name: Instalar Dependências do Frontend
         run: npm install
 
-      - name: Instalar Tauri CLI via Rust
+      - name: Instalar Tauri CLI via Cargo
         run: cargo install tauri-cli --version "^2.0.0"
 
       - name: Inicializar Configurações do Android (Modo CI)
-        run: $HOME/.cargo/bin/tauri android init --ci
+        run: cargo tauri android init --ci
 
       - name: Compilar APK (Modo Debug)
-        run: $HOME/.cargo/bin/tauri android build --debug
+        run: cargo tauri android build --debug
 
       - name: Enviar APK Gerado como Artefato
         uses: actions/upload-artifact@v4
