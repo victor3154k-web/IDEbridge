@@ -9,9 +9,7 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-	zoom: 1.35;
-}
+
 
 * {
 	color: var(--theme-color-text);
