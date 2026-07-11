@@ -5,14 +5,22 @@ use tauri::Manager;
 mod fs_extra;
 mod watch;
 
-// Esta macro avisa ao Android que este é o ponto de entrada do app mobile!
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     let watcher_mutex: Arc<Mutex<Option<RecommendedWatcher>>> = Arc::new(Mutex::new(None));
-
     let app_watcher_mutex = watcher_mutex.clone();
-    tauri::Builder::default()
-        .plugin(tauri_plugin_updater::Builder::new().build())
+
+    // Criamos a base do construtor padrão do Tauri
+    let mut builder = tauri::Builder::default();
+
+    // Se estiver compilando para Desktop (PC), adicionamos o plugin do Updater
+    #[cfg(desktop)]
+    {
+        builder = builder.plugin(tauri_plugin_updater::Builder::new().build());
+    }
+
+    // Adicionamos os demais plugins e configurações que rodam em todas as plataformas
+    builder
         .plugin(tauri_plugin_process::init())
         .plugin(tauri_plugin_fs::init())
         .plugin(tauri_plugin_dialog::init())
